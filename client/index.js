@@ -1,4 +1,8 @@
+// import ReactDOM from "react-dom";
+
+import App from "./components/App";
+
 ReactDOM.render(
-  <h2>Hello JSX!1</h2>,
+  <App/>,
   root
 );

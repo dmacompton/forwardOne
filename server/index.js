@@ -1,14 +1,10 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer();
 
 server.on('request', (req, res) => {
-  console.log(req,res);
-  res.write('Hello Node!\n');
-  setTimeout(() => {
-    res.write('Still on....\n');
-    res.end();
-  }, 3000);
+  res.end(fs.readFileSync(`${__dirname}/../client/index.html`));
 });
 
 server.listen(8080);

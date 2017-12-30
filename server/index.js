@@ -1,10 +1,6 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const app = express();
 
-const server = http.createServer();
+app.use(express.static('client'));
 
-server.on('request', (req, res) => {
-  res.end(fs.readFileSync(`${__dirname}/../client/index.html`));
-});
-
-server.listen(8080);
+app.listen(8080);

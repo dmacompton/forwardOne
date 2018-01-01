@@ -1,7 +1,18 @@
 const express = require('express');
 const { Pool } = require('pg');
+import {
+  DATABASE,
+  USER,
+  PASSWORD,
+  HOST
+} from '../config';
+
 const pool = new Pool({
-  database: 'books-dev',
+  database: DATABASE,
+  user: USER,
+  password: PASSWORD,
+  host: HOST,
+  ssl: true,
 });
 
 const router = express.Router();

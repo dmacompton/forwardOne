@@ -1,12 +1,10 @@
 import React from 'react';
 import Book from './Book';
 
-const BookList = (props) => {
+const BookList = ({ books }) => {
   return (
     <div>
-      <Book/>
-      <Book/>
-      <Book/>
+      {books.length ? books.map(book => <Book key={book.id} {...book} />) : 'No books'}
     </div>
   )
 }

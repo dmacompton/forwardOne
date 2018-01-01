@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Book = (props) => {
+const Book = ({ author, price, title }) => {
   return (
-    <div>One Book...</div>
+    <div>{title} - {author} {price}$</div>
   )
 }
+
 
 export default Book;

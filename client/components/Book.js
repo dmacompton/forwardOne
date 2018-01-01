@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Book = ({ author, price, title }) => {
-  return (
-    <div>{title} - {author} {price}$</div>
-  )
+class Book extends Component {
+  onClick = () => {
+    const { id, onClick } = this.props;
+    onClick(id);
+  }
+  render() {
+    const { author, price, title } = this.props;
+    return (
+      <div onClick={this.onClick}>{title} - {author} {price}$</div>
+    )
+  }
 }
-
 
 export default Book;

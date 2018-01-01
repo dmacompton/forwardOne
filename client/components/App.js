@@ -3,19 +3,30 @@ import BookList from './BookList';
 import axios from 'axios';
 
 class App extends Component {
-  state = { books: this.props.initialData };
-  componentDidMount() {
-    axios.get('http://localhost:8080/api/books/').then(res => {
-      this.setState({
-        books: res.data,
-      })
-    });
+  state = {
+    books: this.props.initialData,
+    ratings: {},
+  };
+  fetchRatingForBook = (bookId) => {
+    if (this.state.ratings[bookId]) return;
+    axios.get(`http://localhost:8080/api/books/${bookId}/ratings`)
+      .then(res => {
+        this.setState((prevState) => {
+          const currentRatings = prevState.ratings;
+          currentRatings[bookId] = res.data;
+          return { ratings: currentRatings }
+        });
+      });
   }
   render() {
-    const { books } = this.state;
+    const { books, ratings } = this.state;
     return (
       <div>
-        <BookList books={books} />
+        <BookList
+          books={books}
+          ratings={ratings}
+          onBookClick={this.fetchRatingForBook}
+        />
       </div>
     )
   }

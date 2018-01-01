@@ -1,10 +1,20 @@
 import React from 'react';
 import Book from './Book';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, onBookClick }) => {
   return (
     <div>
-      {books.length ? books.map(book => <Book key={book.id} {...book} />) : 'No books'}
+      {
+        !books.length ?
+          'No books' :
+          books.map(book => (
+            <Book
+              key={book.id}
+              onClick={onBookClick}
+              {...book}
+            />
+          ))
+      }
     </div>
   )
 }

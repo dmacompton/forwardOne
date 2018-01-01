@@ -24,7 +24,7 @@ router.get('/books', (req, res) => {
   });
 });
 
-router.get('/books/:bookId/rating', (req, res) => {
+router.get('/books/:bookId/ratings', (req, res) => {
   pool.query(
     'SELECT * from reviews where book_id = $1',
     [req.params.bookId],

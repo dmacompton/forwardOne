@@ -7,9 +7,8 @@
   <title>Book Store</title>
 </head>
 <body>
-  <div id="root">
-    <%- content %>
-  </div>
+  <div id="root"><%- markup -%></div>
+  <script>window.__initialData__ = <%- JSON.stringify(initialData) -%>;</script>
   <script src="./bundle.js"></script>
 </body>
 </html>

@@ -8,9 +8,13 @@ app.use(express.static('client'));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('index', {
-    content: serverRender(),
-  });
+  serverRender().then((renderData) => {
+
+    res.render('index', {
+      markup: renderData.markup,
+      initialData: renderData.data,
+    });
+  })
 });
 
 app.use('/api', apiRouter);

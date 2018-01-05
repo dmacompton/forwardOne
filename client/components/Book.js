@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
 class Book extends Component {
-  onClick = () => {
-    const { id, onClick } = this.props;
-    onClick(id);
+  onRatingClick = () => {
+    const { id, onRatingClick } = this.props;
+    onRatingClick(id);
   }
   render() {
-    const { author, price, title } = this.props;
+    const { author, price, rating, title } = this.props;
     return (
-      <div onClick={this.onClick}>{title} - {author} {price}$</div>
-    )
+      <div>
+        <h2>{title}</h2>
+        <div>{author}</div>
+        <div>{price}$</div>
+      </div>
+    );
   }
 }
 

@@ -7,9 +7,8 @@ import apiRouter from './apiRouter';
 app.use(express.static('client'));
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  serverRender().then((renderData) => {
-
+app.get(['/', '/books/:bookId'], (req, res) => {
+  serverRender(req.params.bookId).then((renderData) => {
     res.render('index', {
       markup: renderData.markup,
       initialData: renderData.data,

@@ -3,13 +3,24 @@ const ReactDOMServer = require('react-dom/server');
 import axios from 'axios';
 import App from '../client/components/App';
 
-export default () => {
-  return axios.get('http://localhost:8080/api/books/').then(res => {
+const getData = (bookId, resData) => {
+  return bookId ? { books: [resData], currentBookId: bookId } : resData;
+};
+
+const getUrl = (bookId) => {
+  return bookId ?
+    `http://localhost:8080/api/books/${bookId}` :
+    `http://localhost:8080/api/books/`;
+};
+
+export default (bookId) => {
+  return axios.get(getUrl(bookId)).then(res => {
+    const data = getData(bookId, res.data);
     return {
       markup: ReactDOMServer.renderToString(
-        <App initialData={res.data} />
+        <App initialData={data} />
       ),
-      data: res.data,
+      data,
     };
   });
 };

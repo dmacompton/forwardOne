@@ -1,16 +1,18 @@
 import React from 'react';
-import Book from './Book';
+import BookItem from './BookItem';
 
-const BookList = ({ books, onBookClick }) => {
+const BookList = ({ books, onBookClick, calcRatingForBook, onTitleClick }) => {
   return (
     <div>
       {
         !books.length ?
           'No books' :
           books.map(book => (
-            <Book
+            <BookItem
+              onClick={onTitleClick}
               key={book.id}
-              onClick={onBookClick}
+              rating={calcRatingForBook(book.id)}
+              onRatingClick={onBookClick}
               {...book}
             />
           ))
